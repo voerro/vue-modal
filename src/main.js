@@ -1,7 +1,10 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Modal from './Modal.vue';
+import showModal from './interface'
 
-new Vue({
-  el: '#app',
-  render: h => h(App)
-})
+window.showModal = showModal;
+
+if (document.querySelector('#voerro-vue-modal-demo-vqk6etkfjrcpsjg5')) {
+    window.Modal = Modal;
+}
+
+export default Modal;

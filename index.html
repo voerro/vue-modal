@@ -1,11 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>vue-modal</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script src="/dist/build.js"></script>
-  </body>
+    
+    <title>@voerro/vue-modal</title>
+    
+    <link rel="stylesheet" href="demo/css/bulma.min.css">
+</head>
+<body>
+    <section class="hero is-info">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">@voerro/vue-modal</h1>
+                <h2 class="subtitle">
+                    Simple modal component for Vue.js 2 by
+                    <a href="http://voerro.com">Voerro</a>
+                </h2>
+            </div>
+        </div>
+    </section>
+    
+    <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5">
+        
+        <div style="padding: 2rem;">
+            <div class="columns">
+                <div class="column is-3">
+                    <!-- <h2 class="is-size-4" style="margin-bottom: 1rem;">Options</h2>
+                    
+                    <div class="field">
+                        <div class="control">
+                            <label class="checkbox">
+                                <input type="checkbox" v-model="typeahead">
+                                Typeahead/autocomplete on
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <label class="label">Placeholder</label>
+                        
+                        <div class="control">
+                            <input class="input" type="text" v-model="placeholder">
+                        </div>
+                    </div>
+                    
+                    <div class="field">
+                        <label class="label">Limit</label>
+                        
+                        <div class="control">
+                            <input class="input" type="text" v-model="limit">
+                        </div>
+                    </div> -->
+                </div>
+                
+                <div class="column">
+                    <modal></modal>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
+    <script src="dist/build.js"></script>
+    
+    <script>
+        new Vue({
+            el: '#voerro-vue-modal-demo-vqk6etkfjrcpsjg5',
+            
+            components: { Modal },
+            
+            data: {
+                
+            }
+        });
+
+        showModal({
+            title: 'Modal Title',
+            body: 'Modal body.',
+            buttons: [
+                {
+                    text: 'Yes',
+                    handler: () => {
+                        alert('Perform further actions');
+                    }
+                },
+                {
+                    text: 'Cancel',
+                }
+            ]
+        });
+    </script>
+</body>
 </html>

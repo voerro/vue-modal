@@ -7,7 +7,7 @@
 			<!-- Main modal container -->
 			<div class="modal-box">
 				<div class="modal-header">
-					<div class="modal-title"><h2 v-text="title"></h2></div>
+					<div class="modal-title" v-text="title"></div>
 					<div class="close-modal" @click="hideModal">&#10006;</div> 
 				</div>
 
@@ -177,24 +177,49 @@
 * Styling
 */
 .modal-header {
-	display: flex;
+	justify-content: top;
+	padding: 1rem;
 }
 
 .modal-title {
-	flex: 1;
+	font-weight: bold;
 }
 
 .modal-body {
 	position: relative;
 	overflow: auto;
+	padding: 0 1rem;
 }
 
 .modal-buttons {
+	display: flex;
 	text-align: right;
+}
+
+.modal-buttons > button {
+	flex: 1;
+	cursor: pointer;
+
+	border: none;
+	text-decoration: none;
+	
+	border-radius: 0 0 .2rem .2rem;
+	background: transparent;
+	font-weight: bold;
+	padding: .6rem 1rem;
+}
+.modal-buttons > button:hover {
+	background: #f0f0f0;
 }
 
 /* Close Button */
 .close-modal {
+	position: absolute;
+	top: .5rem;
+	right: 1rem;
+
 	cursor: pointer;
+	font-size: 1.5rem;
+	color: #505050;
 }
 </style>

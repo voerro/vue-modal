@@ -1,6 +1,9 @@
 <template>
-	<div class="modal" v-show="show">
+	<div class="modal-overlay" v-show="show">
+		<!-- Used to close the modal by clicking on the overlay -->
 	    <div class="modal-sandbox" @click="hideModal"></div>
+		
+		<!-- Main modal container -->
 	    <div class="modal-box">
 	        <div class="modal-header">
 	            <div class="modal-title"><h2 v-text="title"></h2></div>
@@ -9,85 +12,18 @@
 
 	        <div class="modal-body">
 	        	<div v-html="body"></div>
-
-	        	<div class="modal-buttons">
-	        		<button v-for="(btn, index) in buttons"
-							:key="index"
-	        				class="btn btn-default mr-1"
-	        				@click="handleButtonClick(btn.handler)">
-	        			{{ btn.text }}
-	        		</button>
-	        	</div>
 	        </div>
+
+			<div class="modal-buttons">
+				<button v-for="(btn, index) in buttons"
+						:key="index"
+						@click="handleButtonClick(btn.handler)">
+					{{ btn.text }}
+				</button>
+			</div>
 	    </div>
 	</div>
 </template>
-
-<style>
-.modal,
-.modal-box {
-	z-index: 900;
-}
-
-.modal-sandbox {
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	background: transparent;
-}
-
-.modal {
-	display: block; 
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-	background: rgb(0,0,0);
-	background: rgba(0,0,0,.8);
-	overflow: auto;
-}
-
-.modal-box {
-	position: relative;
-	width: 60%;
-	margin: 100px auto;
-	animation-name: modalbox;
-	animation-duration: .3s;
-	animation-timing-function: ease-out;
-}
-
-.modal-header {
-	display: flex;
-	background: #000000;
-	color: #ffffff;
-}
-
-.modal-title {
-	flex: 1;
-}
-
-.modal-title h2 {
-	color: #ffffff;
-	margin: 0;
-}
-
-.modal-body {
-	background: #ffffff;
-}
-
-.modal-buttons {
-	margin-top: 1rem;
-	text-align: right;
-}
-
-/* Close Button */
-.close-modal {
-	cursor: pointer;
-}
-</style>
 
 <script>
 	export default {
@@ -99,7 +35,7 @@
 				body: '',
 				show: false,
 				buttons: [],
-				defaultSize: 60 
+				defaultSize: 50
 			}
 		},
 
@@ -123,6 +59,7 @@
 						this.buttons = options.buttons ? options.buttons : [];
 
 						if (options.bodyUrl) {
+							// TODO: modify the loader
 							this.body = `<p class="text-center">
 								<span class="fa fa-2x fa-spin fa-spinner"></span>
 							</p>`;
@@ -141,7 +78,7 @@
 						this.$nextTick(function () {
 							this.show = true;
 
-							document.querySelector('body').style.overflow = 'hidden';
+							document.querySelector('html').style.overflow = 'hidden';
 						});
 					}
 				} else {
@@ -152,7 +89,7 @@
 						this.$nextTick(function () {
 							this.show = true;
 
-							document.querySelector('body').style.overflow = 'hidden';
+							document.querySelector('html').style.overflow = 'hidden';
 						});
 					}
 				}
@@ -160,7 +97,7 @@
 
 			hideModal() {
 				this.show = false;
-				document.querySelector('body').style.overflow = 'auto';
+				document.querySelector('html').style.overflow = 'auto';
 			},
 
 			handleButtonClick(handler) {
@@ -172,12 +109,85 @@
 			},
 
 			setWidth(width) {
-				let modalBoxes = document.getElementsByClassName('modal-box');
+				// let modalBoxes = document.getElementsByClassName('modal-box');
 
-				for (let i = 0; i < modalBoxes.length; i++) {
-					modalBoxes[i].style.width = width;
-				}
+				// for (let i = 0; i < modalBoxes.length; i++) {
+				// 	modalBoxes[i].style.width = width;
+				// }
 			}
 		}
 	}
 </script>
+
+<style>
+/**
+* Basic modal CSS
+*/
+.modal-overlay,
+.modal-box {
+	z-index: 900;
+}
+
+.modal-overlay {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+
+	background: rgba(0, 0, 0, .5);
+}
+
+.modal-sandbox {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: transparent;
+}
+
+.modal-box {	
+	display: flex;
+	flex-direction: column;
+
+	position: relative;
+	min-width: 50%;
+	max-width: 95%;
+	max-height: 95%;
+	margin: 0 auto;
+
+	background: #fff;
+	border-radius: .2rem;
+	box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .25);
+}
+
+/**
+* Styling
+*/
+.modal-header {
+	display: flex;
+}
+
+.modal-title {
+	flex: 1;
+}
+
+.modal-body {
+	position: relative;
+	overflow: auto;
+}
+
+.modal-buttons {
+	text-align: right;
+}
+
+/* Close Button */
+.close-modal {
+	cursor: pointer;
+}
+</style>

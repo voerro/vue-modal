@@ -6,6 +6,10 @@
     <title>@voerro/vue-modal</title>
     
     <link rel="stylesheet" href="demo/css/bulma.min.css">
+
+    <style>
+        html { overflow-y: auto; }
+    </style>
 </head>
 <body>
     <section class="hero is-info">
@@ -55,6 +59,35 @@
                 
                 <div class="column">
                     <modal></modal>
+
+                    <button id="small">Small</button>
+                    <button id="big">Big</button>
+
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
+                    <p>content ...</p>
                 </div>
             </div>
         </div>
@@ -74,20 +107,40 @@
             }
         });
 
-        showModal({
-            title: 'Modal Title',
-            body: 'Modal body.',
-            buttons: [
-                {
-                    text: 'Yes',
-                    handler: () => {
-                        alert('Perform further actions');
+        document.querySelector('#small').addEventListener('click', function () {
+            showModal({
+                title: 'Modal Title',
+                body: 'Modal body.<br>asd',
+                buttons: [
+                    {
+                        text: 'Yes',
+                        handler: () => {
+                            alert('Perform further actions');
+                        }
+                    },
+                    {
+                        text: 'Cancel',
                     }
-                },
-                {
-                    text: 'Cancel',
-                }
-            ]
+                ]
+            });
+        });
+
+        document.querySelector('#big').addEventListener('click', function () {
+            showModal({
+                title: 'Modal Title',
+                body: 'Modal body.<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd',
+                buttons: [
+                    {
+                        text: 'Yes',
+                        handler: () => {
+                            alert('Perform further actions');
+                        }
+                    },
+                    {
+                        text: 'Cancel',
+                    }
+                ]
+            });
         });
     </script>
 </body>

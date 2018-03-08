@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>@voerro/vue-modal</title>
     
@@ -62,6 +63,7 @@
 
                     <button id="small">Small</button>
                     <button id="big">Big</button>
+                    <button id="long">Long</button>
 
                     <p>content ...</p>
                     <p>content ...</p>
@@ -129,6 +131,24 @@
             showModal({
                 title: 'Modal Title',
                 body: 'Modal body.<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd',
+                buttons: [
+                    {
+                        text: 'Yes',
+                        handler: () => {
+                            alert('Perform further actions');
+                        }
+                    },
+                    {
+                        text: 'Cancel',
+                    }
+                ]
+            });
+        });
+
+        document.querySelector('#long').addEventListener('click', function () {
+            showModal({
+                title: 'Modal Title',
+                body: 'Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body.',
                 buttons: [
                     {
                         text: 'Yes',

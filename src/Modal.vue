@@ -153,7 +153,6 @@
 	flex-direction: column;
 
 	position: relative;
-	min-width: 50%;
 	max-width: 95%;
 	max-height: 95%;
 	margin: 0 auto;
@@ -161,6 +160,30 @@
 	background: #fff;
 	border-radius: .2rem;
 	box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .25);
+}
+
+/**
+* Responsivness
+*/
+/* Phones */
+@media only screen and (max-width: 768px) {
+	.modal-box {
+		min-width: 95%;
+	}
+}
+
+/* Tablets */
+@media only screen and (min-width: 769px) {
+	.modal-box {
+		min-width: 70%;
+	}
+}
+
+/* Desktops */
+@media only screen and (min-width: 1024px) {
+	.modal-box {
+		min-width: 50%;
+	}
 }
 
 /**
@@ -188,7 +211,7 @@
 .modal-body {
 	position: relative;
 	overflow: auto;
-	padding: 0 1rem;
+	padding: 0 1rem 1rem 1rem;
 }
 
 .modal-buttons {

@@ -1,28 +1,30 @@
 <template>
-	<div class="modal-overlay" v-show="show">
-		<!-- Used to close the modal by clicking on the overlay -->
-	    <div class="modal-sandbox" @click="hideModal"></div>
-		
-		<!-- Main modal container -->
-	    <div class="modal-box">
-	        <div class="modal-header">
-	            <div class="modal-title"><h2 v-text="title"></h2></div>
-	            <div class="close-modal" @click="hideModal">&#10006;</div> 
-	        </div>
+	<transition name="fade">
+		<div class="modal-overlay" v-show="show">
+			<!-- Used to close the modal by clicking on the overlay -->
+			<div class="modal-sandbox" @click="hideModal"></div>
+			
+			<!-- Main modal container -->
+			<div class="modal-box">
+				<div class="modal-header">
+					<div class="modal-title"><h2 v-text="title"></h2></div>
+					<div class="close-modal" @click="hideModal">&#10006;</div> 
+				</div>
 
-	        <div class="modal-body">
-	        	<div v-html="body"></div>
-	        </div>
+				<div class="modal-body">
+					<div v-html="body"></div>
+				</div>
 
-			<div class="modal-buttons">
-				<button v-for="(btn, index) in buttons"
-						:key="index"
-						@click="handleButtonClick(btn.handler)">
-					{{ btn.text }}
-				</button>
+				<div class="modal-buttons">
+					<button v-for="(btn, index) in buttons"
+							:key="index"
+							@click="handleButtonClick(btn.handler)">
+						{{ btn.text }}
+					</button>
+				</div>
 			</div>
-	    </div>
-	</div>
+		</div>
+	</transition>
 </template>
 
 <script>
@@ -164,6 +166,16 @@
 	background: #fff;
 	border-radius: .2rem;
 	box-shadow: 0 0 2rem 0 rgba(0, 0, 0, .25);
+}
+
+/**
+* Transitions
+*/
+.fade-enter-active, .fade-leave-active {
+	transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0;
 }
 
 /**

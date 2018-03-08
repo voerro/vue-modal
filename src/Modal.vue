@@ -19,7 +19,7 @@
 					<div v-html="body"></div>
 				</div>
 
-				<div class="modal-buttons">
+				<div class="modal-buttons" v-show="buttons && buttons.length">
 					<button v-for="(btn, index) in buttons"
 							:key="index"
 							@click="handleButtonClick(btn.handler)"

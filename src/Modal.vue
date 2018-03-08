@@ -181,12 +181,13 @@
 
 .modal-buttons {
 	display: flex;
+	flex-wrap: wrap;
 	text-align: right;
 	border-top: 1px solid #f0f0f0;
 }
 
 .modal-buttons > button {
-	flex: 1;
+	flex-grow: 1;
 	cursor: pointer;
 
 	border: none;

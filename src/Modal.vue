@@ -79,8 +79,6 @@
 
 						this.$nextTick(function () {
 							this.show = true;
-
-							document.querySelector('html').style.overflow = 'hidden';
 						});
 					}
 				} else {
@@ -90,16 +88,13 @@
 
 						this.$nextTick(function () {
 							this.show = true;
-
-							document.querySelector('html').style.overflow = 'hidden';
 						});
 					}
 				}
 			},
 
 			hideModal() {
-				this.show = false;
-				document.querySelector('html').style.overflow = 'auto';
+				this.show = false
 			},
 
 			handleButtonClick(handler) {

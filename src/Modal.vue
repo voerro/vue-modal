@@ -163,30 +163,6 @@
 }
 
 /**
-* Responsivness
-*/
-/* Phones */
-@media only screen and (max-width: 768px) {
-	.modal-box {
-		min-width: 95%;
-	}
-}
-
-/* Tablets */
-@media only screen and (min-width: 769px) {
-	.modal-box {
-		min-width: 70%;
-	}
-}
-
-/* Desktops */
-@media only screen and (min-width: 1024px) {
-	.modal-box {
-		min-width: 50%;
-	}
-}
-
-/**
 * Transitions
 */
 .fade-enter-active, .fade-leave-active {
@@ -217,6 +193,7 @@
 .modal-buttons {
 	display: flex;
 	text-align: right;
+	border-top: 1px solid #f0f0f0;
 }
 
 .modal-buttons > button {
@@ -229,7 +206,6 @@
 	border-radius: 0 0 .2rem .2rem;
 	background: transparent;
 	font-weight: bold;
-	padding: .6rem 1rem;
 }
 .modal-buttons > button:hover {
 	background: #f0f0f0;
@@ -244,5 +220,41 @@
 	cursor: pointer;
 	font-size: 1.5rem;
 	color: #505050;
+}
+
+/**
+* Responsivness
+*/
+/* Phones */
+@media only screen and (max-width: 768px) {
+	.modal-box {
+		min-width: 95%;
+	}
+
+	.modal-buttons > button {
+		padding: 1rem 1rem;
+	}
+}
+
+/* Tablets */
+@media only screen and (min-width: 769px) {
+	.modal-box {
+		min-width: 70%;
+	}
+
+	.modal-buttons > button {
+		padding: .8rem 1rem;
+	}
+}
+
+/* Desktops */
+@media only screen and (min-width: 1024px) {
+	.modal-box {
+		min-width: 50%;
+	}
+
+	.modal-buttons > button {
+		padding: .8rem 1rem;
+	}
 }
 </style>

@@ -25,74 +25,44 @@
         </div>
     </section>
     
-    <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5">
+    <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5" class="container" style="padding: 2rem;">
+        <h2 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Content</h2>
+
+        <modal></modal>
         
-        <div style="padding: 2rem;">
-            <div class="columns">
-                <div class="column is-3">
-                    <!-- <h2 class="is-size-4" style="margin-bottom: 1rem;">Options</h2>
-                    
-                    <div class="field">
-                        <div class="control">
-                            <label class="checkbox">
-                                <input type="checkbox" v-model="typeahead">
-                                Typeahead/autocomplete on
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="field">
-                        <label class="label">Placeholder</label>
-                        
-                        <div class="control">
-                            <input class="input" type="text" v-model="placeholder">
-                        </div>
-                    </div>
-                    
-                    <div class="field">
-                        <label class="label">Limit</label>
-                        
-                        <div class="control">
-                            <input class="input" type="text" v-model="limit">
-                        </div>
-                    </div> -->
-                </div>
-                
-                <div class="column">
-                    <modal></modal>
-
-                    <button id="small">Small</button>
-                    <button id="big">Big</button>
-                    <button id="long">Long</button>
-
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                    <p>content ...</p>
-                </div>
+        <div class="field">
+            <label class="label">Modal Title</label>
+            
+            <div class="control">
+                <input class="input" type="text" v-model="dynamicTitle">
             </div>
         </div>
+
+        <div class="field">
+            <label class="label">Modal Body</label>
+            <div class="control">
+                <textarea class="textarea" v-model="dynamicBody" rows="6"></textarea>
+            </div>
+        </div>
+
+        <p>
+            <button class="button is-primary" @click="showDynamicModal">Generate Modal</button>
+        </p>
+
+
+        <h3 class="is-size-4" style="margin: 1rem 0;">Customize Buttons</h3>
+
+        <p style="margin: 1rem 0;">Modals can have as many buttons as you need, each with a unique handler/action. A button without a handler simply closes the modal.</p>
+
+        <p>
+            <button class="button is-primary" @click="showModalTwoButtons">Two Buttons</button>
+
+            <button class="button is-primary" @click="showModalThreeButtons">Three Buttons</button>
+
+            <button class="button is-primary" @click="showModalLotsaButtons">Lotsa Buttons</button>
+
+            <button class="button is-primary" @click="showModalNoButtons">No Buttons At All</button>
+        </p>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
@@ -105,62 +75,98 @@
             components: { Modal },
             
             data: {
-                
+                dynamicTitle: 'A title',
+                dynamicBody: `<p>Put some content here.</p>
+<p>By the way, <b>HTML</b> is <em>also supported</em>!</p>
+
+<p style="text-align:center">
+    <img src="https://vuejs.org/images/logo.png" style="height: 5rem;">
+</p>`,
+            },
+
+            methods: {
+                showDynamicModal () {
+                    VoerroModal.show({
+                        title: this.dynamicTitle,
+                        body: this.dynamicBody,
+                        buttons: [
+                            {
+                                text: 'Ok'
+                            }
+                        ]
+                    }); 
+                },
+
+                showModalTwoButtons () {
+                    VoerroModal.show({
+                        title: 'Two Buttons',
+                        body: 'This one has two buttons!',
+                        buttons: [
+                            {
+                                text: 'Ok',
+                                handler: function () {
+                                    alert('You pressed ok!');
+                                }
+                            },
+                            {
+                                text: 'Cancel'
+                            }
+                        ]
+                    });
+                },
+
+                showModalThreeButtons() {
+                    VoerroModal.show({
+                        title: 'How About Three Buttons?',
+                        body: 'Not bad...',
+                        buttons: [
+                            {
+                                text: 'Yes',
+                                handler: function () {
+                                    alert('You pressed yes!');
+                                }
+                            },
+                            {
+                                text: 'Maybe',
+                                handler: function () {
+                                    alert('You pressed maybe...');
+                                }
+                            },
+                            {
+                                text: 'No',
+                                handler: function () {
+                                    alert('You pressed no :(');
+                                }
+                            }
+                        ]
+                    });
+                },
+
+                showModalLotsaButtons() {
+                    VoerroModal.show({
+                        title: 'How Many Buttons Do You Need?',
+                        body: 'You can have as many as you need. Each button has the same width.',
+                        buttons: [
+                            { text: 'You', },
+                            { text: 'Can' },
+                            { text: 'Have' },
+                            { text: 'As' },
+                            { text: 'Many' },
+                            { text: 'Buttons' },
+                            { text: 'As' },
+                            { text: 'You' },
+                            { text: 'Need' }
+                        ]
+                    });
+                },
+
+                showModalNoButtons() {
+                    VoerroModal.show({
+                        title: 'No Buttons At All',
+                        body: 'No buttons here, move on...',
+                    });
+                },
             }
-        });
-
-        document.querySelector('#small').addEventListener('click', function () {
-            VoerroModal.show({
-                title: 'Modal Title',
-                body: 'Modal body.<br>asd',
-                buttons: [
-                    {
-                        text: 'Yes',
-                        handler: () => {
-                            alert('Perform further actions');
-                        }
-                    },
-                    {
-                        text: 'Cancel',
-                    }
-                ]
-            });
-        });
-
-        document.querySelector('#big').addEventListener('click', function () {
-            VoerroModal.show({
-                title: 'Modal Title',
-                body: 'Modal body.<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd<br>asd',
-                buttons: [
-                    {
-                        text: 'Yes',
-                        handler: () => {
-                            alert('Perform further actions');
-                        }
-                    },
-                    {
-                        text: 'Cancel',
-                    }
-                ]
-            });
-        });
-
-        document.querySelector('#long').addEventListener('click', function () {
-            VoerroModal.show({
-                title: 'Modal Title',
-                body: 'Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body. Modal body.',
-                buttons: [
-                    {
-                        text: 'Yes',
-                        handler: () => {
-                            alert('Perform further actions');
-                        }
-                    },
-                    {
-                        text: 'Cancel',
-                    }
-                ]
-            });
         });
     </script>
 </body>

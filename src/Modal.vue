@@ -22,8 +22,8 @@
 				<div class="modal-buttons">
 					<button v-for="(btn, index) in buttons"
 							:key="index"
-							@click="handleButtonClick(btn.handler)">
-						{{ btn.text }}
+							@click="handleButtonClick(btn.handler)"
+							v-text="btn.text">
 					</button>
 				</div>
 			</div>
@@ -63,18 +63,18 @@
 						this.body = options.body ? options.body : '';
 						this.buttons = options.buttons ? options.buttons : [];
 
-						if (options.bodyUrl) {
-							// TODO: modify the loader
-							this.body = `<p class="text-center">
-								<span class="fa fa-2x fa-spin fa-spinner"></span>
-							</p>`;
+						// if (options.bodyUrl) {
+						// 	// TODO: modify the loader
+						// 	this.body = `<p class="text-center">
+						// 		<span class="fa fa-2x fa-spin fa-spinner"></span>
+						// 	</p>`;
 
-							axios.get(options.bodyUrl).then((response) => {
-								this.body = response.data;
-							});
-						} else {
-							this.body = options.body ? options.body : '';
-						}
+						// 	axios.get(options.bodyUrl).then((response) => {
+						// 		this.body = response.data;
+						// 	});
+						// } else {
+						// 	this.body = options.body ? options.body : '';
+						// }
 						
 						this.$nextTick(function () {
 							this.show = true;

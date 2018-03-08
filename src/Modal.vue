@@ -39,15 +39,14 @@
 			return {
 				title: '',
 				body: '',
-				show: false,
 				buttons: [],
-				defaultSize: 50
+				show: false
 			}
 		},
 
 		created() {
-			window.VoerroModalEvent.$on('show', (options, size) => {
-				this.showModal(options, size);
+			window.VoerroModalEvent.$on('show', (options) => {
+				this.showModal(options);
 			});
 
 			window.VoerroModalEvent.$on('hideAll', () => {
@@ -56,7 +55,7 @@
 		},
 
 		methods: {
-			showModal(options, size) {
+			showModal(options) {
 				if (typeof options === 'object') {
 					// Modal constructor
 					if (! this.id) {
@@ -76,11 +75,7 @@
 						} else {
 							this.body = options.body ? options.body : '';
 						}
-
-						this.setWidth(options.size
-							? `${options.size}%`
-							: `${this.defaultSize}%`);
-
+						
 						this.$nextTick(function () {
 							this.show = true;
 						});
@@ -88,8 +83,6 @@
 				} else {
 					// Inline template
 					if (this.id == options) {
-						this.setWidth(size ? `${size}%` : `${this.defaultSize}%`);
-
 						this.$nextTick(function () {
 							this.show = true;
 						});
@@ -108,14 +101,6 @@
 				
 				this.hideModal();
 			},
-
-			setWidth(width) {
-				// let modalBoxes = document.getElementsByClassName('modal-box');
-
-				// for (let i = 0; i < modalBoxes.length; i++) {
-				// 	modalBoxes[i].style.width = width;
-				// }
-			}
 		}
 	}
 </script>

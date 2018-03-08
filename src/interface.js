@@ -2,8 +2,12 @@ import Vue from 'vue';
 
 window.VoerroModalEvent = new Vue();
 
-let showModal = (options, size) => {
-    window.VoerroModalEvent.$emit('show', options, size);
+class VoerroModal {
+    constructor () {}
+
+    static show (options) {
+        window.VoerroModalEvent.$emit('show', options);
+    }
 }
 
-export default showModal;
+export default VoerroModal;

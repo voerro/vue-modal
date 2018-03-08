@@ -1,10 +1,9 @@
 import Modal from './Modal.vue';
-import showModal from './interface';
-
-window.showModal = showModal;
+import VoerroModal from './interface';
 
 if (document.querySelector('#voerro-vue-modal-demo-vqk6etkfjrcpsjg5')) {
     window.Modal = Modal;
+    window.VoerroModal = VoerroModal;
 }
 
-export default Modal;
+export { Modal, VoerroModal };

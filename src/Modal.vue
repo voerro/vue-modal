@@ -165,12 +165,13 @@
 * Styling
 */
 .modal-header {
-	justify-content: top;
+	display: flex;
 	padding: 1rem;
 }
 
 .modal-title {
 	font-weight: bold;
+	flex: 1;
 }
 
 .modal-body {
@@ -207,9 +208,8 @@
 	justify-content: center;
 	align-items: center;
 
-	position: absolute;
-	top: .5rem;
-	right: 1rem;
+	margin: -.5rem;
+	margin-left: .5rem;
 
 	border-radius: 50%;
 	width: 2.5rem;

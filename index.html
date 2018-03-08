@@ -26,9 +26,9 @@
     </section>
     
     <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5" class="container" style="padding: 2rem;">
-        <h2 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Content</h2>
-
         <modal></modal>
+
+        <h3 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Content</h3>
         
         <div class="field">
             <label class="label">Modal Title</label>
@@ -50,7 +50,8 @@
         </p>
 
 
-        <h3 class="is-size-4" style="margin: 1rem 0;">Customize Buttons</h3>
+
+        <h4 class="is-size-4" style="margin: 1rem 0;">Customize Buttons</h4>
 
         <p style="margin: 1rem 0;">Modals can have as many buttons as you need, each with a unique handler/action. A button without a handler simply closes the modal.</p>
 
@@ -62,6 +63,28 @@
             <button class="button is-primary" @click="showModalLotsaButtons">Lotsa Buttons</button>
 
             <button class="button is-primary" @click="showModalNoButtons">No Buttons At All</button>
+        </p>
+
+
+
+        <hr>
+
+        <h3 class="is-size-3" style="margin-bottom: 1rem;">
+            Loading Modal's Body via AJAX
+        </h3>
+
+        <p style="margin: 1rem 0;">This works as a regular modal, except you need to provide a URL to fetch the content instead of a body.</p>
+
+        <div class="field">
+            <label class="label">Modal Body URL</label>
+        
+            <div class="control">
+                <input class="input" type="text" v-model="ajaxUrl">
+            </div>
+        </div>
+
+        <p>
+            <button class="button is-primary" @click="showAjaxModal">Generate Modal</button>
         </p>
     </div>
     
@@ -82,6 +105,7 @@
 <p style="text-align:center">
     <img src="https://vuejs.org/images/logo.png" style="height: 5rem;">
 </p>`,
+                ajaxUrl: 'demo/ajax.html'
             },
 
             methods: {
@@ -164,6 +188,18 @@
                     VoerroModal.show({
                         title: 'No Buttons At All',
                         body: 'No buttons here, move on...',
+                    });
+                },
+
+                showAjaxModal() {
+                    VoerroModal.show({
+                        title: 'Fetching the Body via AJAX',
+                        bodyUrl: this.ajaxUrl,
+                        buttons: [
+                            {
+                                text: 'Yep!'
+                            }
+                        ]
                     });
                 },
             }

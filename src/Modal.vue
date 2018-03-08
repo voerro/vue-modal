@@ -16,7 +16,21 @@
 				</div>
 
 				<div class="modal-body">
-					<div v-html="body"></div>
+					<div v-if="fetchingBody" class="modal-loader">
+						<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+							<path d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+								<animateTransform attributeType="xml"
+								attributeName="transform"
+								type="rotate"
+								from="0 25 25"
+								to="360 25 25"
+								dur="0.6s"
+								repeatCount="indefinite"/>
+							</path>
+						</svg>
+					</div>
+
+					<div v-else v-html="body"></div>
 				</div>
 
 				<div class="modal-buttons" v-show="buttons && buttons.length">
@@ -40,7 +54,8 @@
 				title: '',
 				body: '',
 				buttons: [],
-				show: false
+				show: false,
+				fetchingBody: false
 			}
 		},
 
@@ -63,18 +78,14 @@
 						this.body = options.body ? options.body : '';
 						this.buttons = options.buttons ? options.buttons : [];
 
-						// if (options.bodyUrl) {
-						// 	// TODO: modify the loader
-						// 	this.body = `<p class="text-center">
-						// 		<span class="fa fa-2x fa-spin fa-spinner"></span>
-						// 	</p>`;
-
-						// 	axios.get(options.bodyUrl).then((response) => {
-						// 		this.body = response.data;
-						// 	});
-						// } else {
-						// 	this.body = options.body ? options.body : '';
-						// }
+						if (options.bodyUrl) {
+							this.fetchingBody = true;
+							
+							let request = new XMLHttpRequest();
+							request.addEventListener("load", this.onAjaxResponse);
+							request.open("GET", options.bodyUrl);
+							request.send();
+						}
 						
 						this.$nextTick(function () {
 							this.show = true;
@@ -101,6 +112,22 @@
 				
 				this.hideModal();
 			},
+
+			onAjaxResponse ({ target }) {
+				if (target.status === 200) {
+					this.body = target.response;
+				} else {
+					console.error(`AJAX request to fetch the modal content returned an error: ${target.status} - ${target.statusText}`);
+
+					this.showModal({
+						title: 'Error',
+						body: 'Could not fetch the content of the modal.',
+						buttons: [{ text: 'Ok' }]
+					});
+				}
+				
+				this.fetchingBody = false;
+			}
 		}
 	}
 </script>
@@ -222,7 +249,6 @@
 	fill: #000;
 	width: 1.5rem;
 	height: 1.5rem;
-	pointer-events: none;
 }
 
 .close-modal:hover {
@@ -232,6 +258,18 @@
 	fill: #fff;
 }
 
+/* Loading animated icon */
+.modal-loader {
+	display: flex;
+	justify-content: center;
+
+	width: 100%;
+}
+.modal-loader > svg {
+	width: 3rem;
+	height: 3rem;
+	fill: #000;
+}
 
 /**
 * Responsivness

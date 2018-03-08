@@ -10,6 +10,8 @@
 
     <style>
         html { overflow-y: auto; }
+
+        [v-cloak] { display: none; }
     </style>
 </head>
 <body>
@@ -17,10 +19,17 @@
         <div class="hero-body">
             <div class="container">
                 <h1 class="title">@voerro/vue-modal</h1>
+
                 <h2 class="subtitle">
                      A flexible & responsive modal component for Vue.js 2 by
                     <a href="http://voerro.com">Voerro</a>
                 </h2>
+
+                <p>
+                    <a href="https://github.com/voerro/vue-modal" target="_blank">
+                        View on Github
+                    </a>
+                </p>
             </div>
         </div>
     </section>
@@ -28,7 +37,7 @@
     <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5" class="container" style="padding: 2rem;">
         <modal></modal>
 
-        <h3 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Content</h3>
+        <h3 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Modals</h3>
         
         <div class="field">
             <label class="label">Modal Title</label>
@@ -85,6 +94,34 @@
 
         <p>
             <button class="button is-primary" @click="showAjaxModal">Generate Modal</button>
+        </p>
+
+
+
+        <hr>
+        
+        <h3 class="is-size-3" style="margin-bottom: 1rem;">Inline Modals</h3>
+
+        <modal id="inline" v-cloak>
+            <template slot="title">Inline Title</template>
+
+            <div slot="body">This body, as well as the title, are stored directly within the HTML of your page.</div>
+
+            <div slot="footer">You'll have to implement the buttons completely yourself, in case you need them of course.</div>
+        </modal>
+
+        <modal id="inline-two" v-cloak>
+            <template slot="title">Inline 2</template>
+        
+            <div slot="body">This is a different inline modal with a different id.</div>
+        </modal>
+
+        <p style="margin: 1rem 0;">You can also define multiple modals inline with Vue slots. Each modal should have a unique id. Open this page's source code and find the two &lt;modal&gt; blocks defining these modals if you want to see how it works.</p>
+
+        <p>
+            <button class="button is-primary" @click="showInlineModal">Show Modal One</button>
+
+            <button class="button is-primary" @click="showInlineModalTwo">Show Modal Two</button>
         </p>
     </div>
     
@@ -201,6 +238,14 @@
                             }
                         ]
                     });
+                },
+
+                showInlineModal () {
+                    VoerroModal.show('inline');
+                },
+
+                showInlineModalTwo () {
+                    VoerroModal.show('inline-two');
                 },
             }
         });

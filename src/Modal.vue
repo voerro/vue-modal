@@ -222,6 +222,7 @@
 	fill: #000;
 	width: 1.5rem;
 	height: 1.5rem;
+	pointer-events: none;
 }
 
 .close-modal:hover {

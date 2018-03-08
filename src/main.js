@@ -1,5 +1,5 @@
 import Modal from './Modal.vue';
-import showModal from './interface'
+import showModal from './interface';
 
 window.showModal = showModal;
 

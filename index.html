@@ -123,6 +123,20 @@
 
             <button class="button is-primary" @click="showInlineModalTwo">Show Modal Two</button>
         </p>
+
+
+
+        <hr>
+        
+        <h3 class="is-size-3" style="margin-bottom: 1rem;">
+            Hiding Modals Programmatically
+        </h3>
+
+        <p>
+            <button class="button is-primary" @click="showAndHideGeneratedModal">Hide Dynamically Generated Modal After 2 Seconds</button>
+        
+            <button class="button is-primary" @click="showAndHideInlineModal">Hide Inline Modal After 2 Seconds</button>
+        </p>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
@@ -247,6 +261,25 @@
                 showInlineModalTwo () {
                     VoerroModal.show('inline-two');
                 },
+
+                showAndHideGeneratedModal () {
+                    VoerroModal.show({
+                        title: 'VoerroModal.hide()',
+                        body: 'This will disappear in 2 seconds...'
+                    });
+
+                    setTimeout(function () {
+                        VoerroModal.hide();
+                    }, 2000);
+                },
+
+                showAndHideInlineModal () {
+                    VoerroModal.show('inline-two');
+
+                    setTimeout(function () {
+                        VoerroModal.hide('inline-two');
+                    }, 2000);
+                }
             }
         });
     </script>

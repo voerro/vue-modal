@@ -310,7 +310,7 @@
 }
 
 .close-modal:hover {
-    background: #000;
+    background: #505050;
 }
 .close-modal:hover > svg {
     fill: #fff;

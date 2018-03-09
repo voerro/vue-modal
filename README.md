@@ -6,14 +6,16 @@
 
 A flexible & responsive modal component for Vue.js 2
 
+[Live Demo](https://voerro.github.io/vue-modal/)
+
 ## Installation via NPM
 
 ```
-npm i @voerro/vue-tagsinput --save-dev
+npm i @voerro/vue-modal --save-dev
 ```
 or
 ```
-npm i @voerro/vue-tagsinput --save
+npm i @voerro/vue-modal --save
 ```
 
 Then import the component:

@@ -35,7 +35,8 @@
     </section>
     
     <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5" class="container" style="padding: 2rem;">
-        <modal :dismissible="dynamicDismissible"></modal>
+        <modal :dismissible="dynamicDismissible"
+            :header="dynamicHeader"></modal>
 
         <h3 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Modals</h3>
         
@@ -58,6 +59,14 @@
             <div class="control">
                 <label class="checkbox">
                     <input type="checkbox" v-model="dynamicDismissible"> Dismissible
+                </label>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox" v-model="dynamicHeader"> Header
                 </label>
             </div>
         </div>
@@ -151,13 +160,21 @@
         <hr>
         
         <h3 class="is-size-3" style="margin-bottom: 1rem;">
-             Undismissible Modals
+             Options
         </h3>
 
-        <p style="margin: 1rem 0;">An undismissible modal can not be dismissed by pressing on the close button or on the overlay outside the modal. An action (a button click) is required to close the modal.</p>
+        <p style="margin: 1rem 0;"><b>Undismissible Modals</b>. An undismissible modal can not be dismissed by pressing on the close button or on the overlay outside the modal. An action (a button click) is required to close the modal.</p>
 
         <p>
-            <button class="button is-primary" @click="showUndismissibleModal">Show Undismissible Modal</button>
+            <button class="button is-primary" @click="showUndismissibleModal">Show Modal</button>
+        </p>
+
+        <p style="margin: 1rem 0;">
+            <b>No Header</b>
+        </p>
+        
+        <p>
+            <button class="button is-primary" @click="showModalWithoutHeader">Show Modal</button>
         </p>
     </div>
     
@@ -180,6 +197,7 @@
 </p>`,
                 ajaxUrl: 'demo/ajax.html',
                 dynamicDismissible: true,
+                dynamicHeader: true,
             },
 
             methods: {
@@ -319,7 +337,19 @@
                         ],
                         dismissible: false
                     });
-                }
+                },
+
+                showModalWithoutHeader () {
+                    VoerroModal.show({
+                        body: 'This modal\'s header is completely hidden.',
+                        buttons: [
+                            {
+                                text: 'Ok'
+                            }
+                        ],
+                        header: false
+                    });
+                },
             }
         });
     </script>

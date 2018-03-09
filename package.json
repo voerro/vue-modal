@@ -1,7 +1,7 @@
 {
   "name": "@voerro/vue-modal",
   "description": "A flexible & responsive modal component for Vue.js 2",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": "Alexander Zavyalov <alex@voerro.com> (http://voerro.com)",
   "license": "MIT",
   "main": "src/main.js",

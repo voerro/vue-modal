@@ -123,12 +123,13 @@ Property | Type | Default | Required | Description
 --- | --- | --- | --- | ---
 id | String | undefined | no | Id of the modal
 dismissible | Boolean | true | no | Whether a modal can be closed by clicking on the close button or on the overlay outside the modal.<br>When applied to the global `<modal>` component becomes the default for all the dynamically generated modals. Can be overridden for individual modals.
+header | Boolean | true | no | Whether to show the header.<br>When applied to the global `<modal>` component becomes the default for all the dynamically generated modals. Can be overridden for individual modals.
 
 ### VoerroModal Methods
 
 Method | Description | Arguments
 ---| --- | ---
-show (options) | Generate and show a modal | *options* - an object with options<br><br>**Available Options:**<br>*title* - String - modal's title<br>*body* - String - modal's body (HTML is supported)<br>*bodyUrl* - String - URL to fetch modal's body from (AJAX)<br>*buttons* - Array - an array of objects describing buttons<br>*dismissible* - Boolean - Whether the modal can be closed by clicking on the close button or on the overlay outside the modal.
+show (options) | Generate and show a modal | *options* - an object with options<br><br>**Available Options:**<br>*title* - String - modal's title<br>*body* - String - modal's body (HTML is supported)<br>*bodyUrl* - String - URL to fetch modal's body from (AJAX)<br>*buttons* - Array - an array of objects describing buttons<br>*dismissible* - Boolean - Whether the modal can be closed by clicking on the close button or on the overlay outside the modal.<br>*header* - Boolean - Whether to show the header.
 show (id) | Show an inline modal by id | *id* - the id of a modal to be shown
 hide (id) | Hide a modal by id | *id* - the id of a modal to be hidden.
 hide () | Hide the currently open dynamically generated modal | -

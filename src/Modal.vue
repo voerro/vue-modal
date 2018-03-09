@@ -6,7 +6,7 @@
             
             <!-- Main modal container -->
             <div class="modal-box">
-                <div class="modal-header">
+                <div class="modal-header" v-show="headerVisible">
                     <div class="modal-title">
                         <slot name="title">{{ title }}</slot>
                     </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
 
-                <div class="modal-buttons"
+                <div class="modal-footer"
                     v-show="(buttons && buttons.length) || this.$slots.footer"
                 >
                     <slot name="footer">
@@ -66,6 +66,10 @@
             dismissible: {
                 type: Boolean,
                 default: true
+            },
+            header: {
+                type: Boolean,
+                default: true
             }
         },
 
@@ -76,7 +80,8 @@
                 buttons: [],
                 show: false,
                 fetchingBody: false,
-                canClose: this.dismissible
+                canClose: this.dismissible,
+                headerVisible: this.header
             }
         },
 
@@ -112,6 +117,12 @@
                             this.canClose = options.dismissible;
                         } else {
                             this.canClose = this.dismissible;
+                        }
+
+                        if (typeof options.header === 'boolean') {
+                            this.headerVisible = options.header;
+                        } else {
+                            this.headerVisible = this.header;
                         }
 
                         // $nextTick allows to show a new modal right after the
@@ -240,7 +251,7 @@
 */
 .modal-header {
     display: flex;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
 }
 
 .modal-title {
@@ -251,17 +262,17 @@
 .modal-body {
     position: relative;
     overflow: auto;
-    padding: 0 1rem 1rem 1rem;
+    padding: 1rem;
 }
 
-.modal-buttons {
+.modal-footer {
     display: flex;
     flex-wrap: wrap;
     text-align: right;
     border-top: 1px solid #f0f0f0;
 }
 
-.modal-buttons > button {
+.modal-footer > button {
     flex-grow: 1;
     cursor: pointer;
 
@@ -272,7 +283,7 @@
     background: transparent;
     font-weight: bold;
 }
-.modal-buttons > button:hover {
+.modal-footer > button:hover {
     background: #f0f0f0;
 }
 
@@ -327,7 +338,7 @@
         min-width: 95%;
     }
 
-    .modal-buttons > button {
+    .modal-footer > button {
         padding: 1rem 1rem;
     }
 }
@@ -338,7 +349,7 @@
         min-width: 70%;
     }
 
-    .modal-buttons > button {
+    .modal-footer > button {
         padding: .8rem 1rem;
     }
 }
@@ -349,7 +360,7 @@
         min-width: 50%;
     }
 
-    .modal-buttons > button {
+    .modal-footer > button {
         padding: .8rem 1rem;
     }
 }

@@ -35,7 +35,7 @@
     </section>
     
     <div id="voerro-vue-modal-demo-vqk6etkfjrcpsjg5" class="container" style="padding: 2rem;">
-        <modal></modal>
+        <modal :dismissible="dynamicDismissible"></modal>
 
         <h3 class="is-size-3" style="margin-bottom: 1rem;">Dynamic Modals</h3>
         
@@ -51,6 +51,14 @@
             <label class="label">Modal Body</label>
             <div class="control">
                 <textarea class="textarea" v-model="dynamicBody" rows="6"></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox" v-model="dynamicDismissible"> Dismissible
+                </label>
             </div>
         </div>
 
@@ -137,6 +145,20 @@
         
             <button class="button is-primary" @click="showAndHideInlineModal">Hide Inline Modal After 2 Seconds</button>
         </p>
+
+
+
+        <hr>
+        
+        <h3 class="is-size-3" style="margin-bottom: 1rem;">
+             Undismissible Modals
+        </h3>
+
+        <p style="margin: 1rem 0;">An undismissible modal can not be dismissed by pressing on the close button or on the overlay outside the modal. An action (a button click) is required to close the modal.</p>
+
+        <p>
+            <button class="button is-primary" @click="showUndismissibleModal">Show Undismissible Modal</button>
+        </p>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
@@ -156,7 +178,8 @@
 <p style="text-align:center">
     <img src="https://vuejs.org/images/logo.png" style="height: 5rem;">
 </p>`,
-                ajaxUrl: 'demo/ajax.html'
+                ajaxUrl: 'demo/ajax.html',
+                dynamicDismissible: true,
             },
 
             methods: {
@@ -239,6 +262,7 @@
                     VoerroModal.show({
                         title: 'No Buttons At All',
                         body: 'No buttons here, move on...',
+                        dismissible: true
                     });
                 },
 
@@ -279,6 +303,22 @@
                     setTimeout(function () {
                         VoerroModal.hide('inline-two');
                     }, 2000);
+                },
+
+                showUndismissibleModal () {
+                    VoerroModal.show({
+                        title: "U Can't Close This",
+                        body: 'The only way to close this modal is to press on one of the buttons. This forces your users to take an action.',
+                        buttons: [
+                            {
+                                text: 'I Agree'
+                            },
+                            {
+                                text: 'I Don\'t Agree'
+                            }
+                        ],
+                        dismissible: false
+                    });
                 }
             }
         });

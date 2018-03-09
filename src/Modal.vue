@@ -2,7 +2,7 @@
     <transition name="fade">
         <div class="modal-overlay" v-show="show">
             <!-- Used to close the modal by clicking on the overlay -->
-            <div class="modal-sandbox" @click="hideModal"></div>
+            <div class="modal-sandbox" @click="tryHidingModal"></div>
             
             <!-- Main modal container -->
             <div class="modal-box">
@@ -11,7 +11,7 @@
                         <slot name="title">{{ title }}</slot>
                     </div>
 
-                    <div class="close-modal" @click="hideModal">
+                    <div class="close-modal" v-show="this.canClose" @click="tryHidingModal">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
                         </svg>
@@ -75,7 +75,8 @@
                 body: '',
                 buttons: [],
                 show: false,
-                fetchingBody: false
+                fetchingBody: false,
+                canClose: this.dismissible
             }
         },
 
@@ -106,7 +107,13 @@
                             request.open("GET", options.bodyUrl);
                             request.send();
                         }
-                        
+
+                        if (typeof options.dismissible === 'boolean') {
+                            this.canClose = options.dismissible;
+                        } else {
+                            this.canClose = this.dismissible;
+                        }
+
                         // $nextTick allows to show a new modal right after the
                         // previous one was closed
                         this.$nextTick(function () {
@@ -127,6 +134,12 @@
 
             hideModal () {
                 this.show = false;
+            },
+
+            tryHidingModal() {
+                if (this.canClose === true) {
+                    this.hideModal();
+                }
             },
 
             hideModalById(id = null) {

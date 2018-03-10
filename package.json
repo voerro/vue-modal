@@ -1,7 +1,7 @@
 {
   "name": "@voerro/vue-modal",
   "description": "A flexible & responsive modal component for Vue.js 2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Alexander Zavyalov <alex@voerro.com> (http://voerro.com)",
   "license": "MIT",
   "main": "src/main.js",
@@ -19,7 +19,6 @@
     "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "dependencies": {
-    "axios": "^0.17",
     "vue": "^2.5.0"
   },
   "browserslist": [

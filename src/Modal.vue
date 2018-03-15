@@ -270,6 +270,7 @@
     flex-wrap: wrap;
     text-align: right;
     border-top: 1px solid #f0f0f0;
+    padding: 0 !important;
 }
 
 .modal-footer > button {

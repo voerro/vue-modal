@@ -134,6 +134,9 @@
                 } else {
                     // Inline template
                     if (this.id === options) {
+                        this.headerVisible = this.header;
+                        this.canClose = this.dismissible;
+
                         // $nextTick allows to show a new modal right after the
                         // previous one was closed
                         this.$nextTick(function () {

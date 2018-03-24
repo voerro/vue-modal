@@ -124,13 +124,19 @@
 
             <div slot="body">This body, as well as the title, are stored directly within the HTML of your page.</div>
 
-            <div slot="footer">You'll have to implement the buttons completely yourself, in case you need them of course.</div>
+            <div slot="footer">You can put something else in the footer if you don't need the buttons (or provide the buttons via options like with dynamically generated modals)</div>
         </modal>
 
         <modal id="inline-two" v-cloak>
             <template slot="title">Inline 2</template>
         
-            <div slot="body">This is a different inline modal with a different id.</div>
+            <div slot="body">This is a different inline modal with a different id. Don't include the footer slot if you don't need it.</div>
+        </modal>
+
+        <modal id="inline-with-buttons" v-cloak>
+            <template slot="title">Inline 3</template>
+        
+            <div slot="body">The buttons for this modal are generated dynamically.</div>
         </modal>
 
         <p style="margin: 1rem 0;">You can also define multiple modals inline with Vue slots. Each modal should have a unique id. Open this page's source code and find the two &lt;modal&gt; blocks defining these modals if you want to see how it works.</p>
@@ -139,6 +145,8 @@
             <button class="button is-primary" @click="showInlineModal">Show Modal One</button>
 
             <button class="button is-primary" @click="showInlineModalTwo">Show Modal Two</button>
+
+            <button class="button is-primary" @click="showInlineModalWithButtons">Show Modal Three</button>
         </p>
 
 
@@ -302,6 +310,20 @@
 
                 showInlineModalTwo () {
                     VoerroModal.show('inline-two');
+                },
+
+                showInlineModalWithButtons () {
+                    VoerroModal.show('inline-with-buttons', {
+                        buttons: [
+                            {
+                                text: 'Nice!',
+                                handler: () => {
+                                    alert('I know, right?');
+                                }
+                            },
+                            { text: 'Close' }
+                        ]
+                    });
                 },
 
                 showAndHideGeneratedModal () {

@@ -5,8 +5,8 @@ window.VoerroModalEvent = new Vue();
 class VoerroModal {
     constructor () {}
 
-    static show (options) {
-        window.VoerroModalEvent.$emit('show', options);
+    static show(optionsOrId, options) {
+        window.VoerroModalEvent.$emit('show', optionsOrId, options);
     }
 
     static hide (id = null) {

@@ -86,8 +86,8 @@
         },
 
         created() {
-            window.VoerroModalEvent.$on('show', (options) => {
-                this.showModal(options);
+            window.VoerroModalEvent.$on('show', (optionsOrId, options) => {
+                this.showModal(optionsOrId, options);
             });
 
             window.VoerroModalEvent.$on('hide', (id) => {
@@ -96,53 +96,48 @@
         },
 
         methods: {
-            showModal(options) {
-                if (typeof options === 'object') {
-                    // Modal constructor
-                    if (! this.id) {
-                        this.title = options.title ? options.title : '';
-                        this.body = options.body ? options.body : '';
+            showModal(optionsOrId, options = null) {
+                if ((! this.id && typeof optionsOrId === 'object') || this.id === optionsOrId) {
+                    // Determine the options object
+                    if (typeof optionsOrId === 'object') {                        
+                        options = optionsOrId;
+                    }
+                    
+                    // Apply the options
+                    if (options) {                        
+                        // Some options can only be set to dynamically generated
+                        // modals and not to the inline modals
+                        if (! this.id) {
+                            this.title = options.title ? options.title : '';
+                            this.body = options.body ? options.body : '';
+
+                            if (options.bodyUrl) {
+                                this.fetchingBody = true;
+
+                                let request = new XMLHttpRequest();
+                                request.addEventListener("load", this.onAjaxResponse);
+                                request.open("GET", options.bodyUrl);
+                                request.send();
+                            }
+                        }
+
                         this.buttons = options.buttons ? options.buttons : [];
 
-                        if (options.bodyUrl) {
-                            this.fetchingBody = true;
+                        this.canClose = typeof options.dismissible === 'boolean'
+                            ? options.dismissible
+                            : this.dismissible;
 
-                            let request = new XMLHttpRequest();
-                            request.addEventListener("load", this.onAjaxResponse);
-                            request.open("GET", options.bodyUrl);
-                            request.send();
-                        }
-
-                        if (typeof options.dismissible === 'boolean') {
-                            this.canClose = options.dismissible;
-                        } else {
-                            this.canClose = this.dismissible;
-                        }
-
-                        if (typeof options.header === 'boolean') {
-                            this.headerVisible = options.header;
-                        } else {
-                            this.headerVisible = this.header;
-                        }
-
-                        // $nextTick allows to show a new modal right after the
-                        // previous one was closed
-                        this.$nextTick(function () {
-                            this.show = true;
-                        });
+                        this.headerVisible = typeof options.header === 'boolean'
+                            ? options.header
+                            : this.header;  
                     }
-                } else {
-                    // Inline template
-                    if (this.id === options) {
-                        this.headerVisible = this.header;
-                        this.canClose = this.dismissible;
 
-                        // $nextTick allows to show a new modal right after the
-                        // previous one was closed
-                        this.$nextTick(function () {
-                            this.show = true;
-                        });
-                    }
+                    // Show the modal
+                    // $nextTick allows to show a new modal right after the
+                    // previous one was closed
+                    this.$nextTick(function () {
+                        this.show = true;
+                    });
                 }
             },
 

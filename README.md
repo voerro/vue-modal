@@ -117,6 +117,22 @@ VoerroModal.show('inline-modal');
 VoerroModal.show('inline-modal-two');
 ```
 
+You can still include an object with options (including dynamically generated buttons) in the method call.
+
+```javascript
+VoerroModal.show('inline-modal', {
+    buttons: [
+        {
+            text: 'Ok',
+            handler: () => {
+                alert('You pressed ok');
+            }
+        },
+        { text: 'CLose' }
+    ]
+});
+```
+
 *Note: don't delete the empty `<modal></modal>` component from your page if you also want to use dynamically generated modals.*
 
 ### `<modal>` Properties

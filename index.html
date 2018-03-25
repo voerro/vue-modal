@@ -184,6 +184,14 @@
         <p>
             <button class="button is-primary" @click="showModalWithoutHeader">Show Modal</button>
         </p>
+
+        <p style="margin: 1rem 0;">
+            <b>Prevent Default Button's Action</b>. By default the active modal will be closed after you press on any of the buttons (even if that button has a handler). Luckily, you can prevent that.
+        </p>
+
+        <p>
+            <button class="button is-primary" @click="showModalPreventDefaultAction">Show Modal</button>
+        </p>
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.min.js"></script>
@@ -372,6 +380,23 @@
                         header: false
                     });
                 },
+
+                showModalPreventDefaultAction () {
+                    VoerroModal.show({
+                        body: 'This modal won\'t automatically close after you press "Ok". You can close the modal manually whenever is appropriate.',
+                        buttons: [
+                            {
+                                text: 'Ok',
+                                preventDefault: true,
+                                handler: () => {
+                                    alert('Performing an action...');
+                                }
+                            },
+                            { text: 'Cancel' }
+                        ],
+                        header: false
+                    });
+                }
             }
         });
     </script>

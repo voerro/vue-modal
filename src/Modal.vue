@@ -46,7 +46,7 @@
                     <slot name="footer">
                         <button v-for="(btn, index) in buttons"
                             :key="index"
-                            @click="handleButtonClick(btn.handler)"
+                            @click="handleButtonClick(btn)"
                             v-text="btn.text">
                         </button>
                     </slot>
@@ -161,12 +161,14 @@
                 }
             },
 
-            handleButtonClick(handler) {
-                if (handler) {
-                    handler();
+            handleButtonClick(btn) {
+                if (btn.handler) {
+                    btn.handler();
                 }
                 
-                this.hideModal();
+                if (!btn.preventDefault) {
+                    this.hideModal();
+                }
             },
 
             onAjaxResponse ({ target }) {

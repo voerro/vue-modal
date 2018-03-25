@@ -59,6 +59,16 @@ VoerroModal.show({
 
 You can add as many buttons as you need. When you press a button, the button's `handler` gets called and then the modal closes. If there's no handler, the modal will close immediately without any additional actions taking place.
 
+#### Buttons - Options
+
+To add buttons to a modal include an array of button objects. Each object can have the following properties (options):
+
+Property | Type | Default | Required | Description
+--- | --- | --- | --- | ---
+text | String | undefined | yes | The text of the button
+handler | function | undefined | no | The function which will be called on button press. The default action is to hide the modal, so you don't have to include anything if the button click should only close the modal.
+preventDefault | Boolean | undefined (false) | no | Even if you provide a handler, the modal will be closed after the action is done. To prevent that set this property to true.
+
 #### Ajax
 
 You can fetch the modal's body via Ajax. To do so provide a `bodyUrl` URL instead of a `body`. Example:

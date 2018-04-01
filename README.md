@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dm/@voerro/vue-modal.svg?style=flat-square)](https://www.npmjs.com/package/@voerro/vue-modal)
 [![MIT](https://img.shields.io/github/license/AlexMordred/vue-modal.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
-A flexible & responsive modal component for Vue.js 2. Looks nice and clean an all devices.
+A flexible & responsive modal component for Vue.js 2. Looks nice and clean on all devices.
 
 [Live Demo](https://voerro.github.io/vue-modal/)
 

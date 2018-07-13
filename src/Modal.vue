@@ -47,7 +47,8 @@
                         <button v-for="(btn, index) in buttons"
                             :key="index"
                             @click="handleButtonClick(btn)"
-                            v-text="btn.text">
+                            v-text="btn.text"
+                            v-bind:class="btn.class">
                         </button>
                     </slot>
                 </div>

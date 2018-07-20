@@ -117,6 +117,7 @@
                                 let request = new XMLHttpRequest();
                                 request.addEventListener("load", this.onAjaxResponse);
                                 request.open("GET", options.bodyUrl);
+                                request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                                 request.send();
                             }
                         }

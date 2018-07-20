@@ -65,9 +65,10 @@ To add buttons to a modal include an array of button objects. Each object can ha
 
 Property | Type | Default | Required | Description
 --- | --- | --- | --- | ---
-text | String | undefined | yes | The text of the button
+text | String | '' | yes | The text of the button
 handler | function | undefined | no | The function which will be called on button press. The default action is to hide the modal, so you don't have to include anything if the button click should only close the modal.
 preventDefault | Boolean | undefined (false) | no | Even if you provide a handler, the modal will be closed after the action is done. To prevent that set this property to true.
+class | String | '' | no | Additional CSS class(es) to add to the button.
 
 #### Ajax
 

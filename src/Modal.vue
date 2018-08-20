@@ -48,7 +48,7 @@
                             :key="index"
                             @click="handleButtonClick(btn)"
                             v-text="btn.text ? btn.text : ''"
-                            :type="btn.type ? btn.type : ''"
+                            :type="btn.type ? btn.type : 'button'"
                             :class="btn.class ? btn.class : ''">
                         </button>
                     </slot>
